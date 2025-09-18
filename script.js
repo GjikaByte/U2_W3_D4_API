@@ -29,7 +29,6 @@ function cardMarkup(p) {
           <div class="mt-auto d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <button class="btn btn-sm btn-outline-secondary" data-view='${p.src.large}' data-alt='${p.alt || ""}' data-ph='${p.photographer || ""}'>View</button>
-              <button class="btn btn-sm btn-outline-secondary" data-edit>Edit</button>
               <button class="btn btn-sm btn-outline-danger" data-hide>Hide</button>
             </div>
             <small class="text-muted">${p.width}×${p.height}</small>
@@ -76,11 +75,6 @@ row.addEventListener("click", e => {
     card.closest(".col-12, .col-sm-6, .col-md-4, .col-lg-3").remove();
   }
 
-  if (t.matches("[data-edit]")) {
-    const title = card.querySelector(".card-title");
-    title.textContent = "Edited";
-  }
-
   if (t.matches("[data-view]")) {
     const url = t.getAttribute("data-view");
     modalImg.src = url;
@@ -90,10 +84,12 @@ row.addEventListener("click", e => {
   }
 });
 
-// Load something on first view
-
-loadImages(word);
 
 // Button actions
 btnMain.addEventListener("click",     () => loadImages(word));
 btnAlt.addEventListener("click",      () => loadImages("hamsters"));
+
+
+// Load something on first view
+
+loadImages(word);
